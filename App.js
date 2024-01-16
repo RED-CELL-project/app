@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Bienvenue dans l'application RED CELL !</Text>
-      <Text>Test modif Antoine 2</Text>
+      <Text>Test modif Antoine 3</Text>
       <StatusBar style="auto" />
     </View>
   );
