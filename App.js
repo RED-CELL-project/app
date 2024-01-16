@@ -16,6 +16,15 @@ export default function App() {
   );
 }
 
+header: {
+  backgroundColor: PRIMARY_COLOR,
+  height: 110,
+  marginBottom: 50,
+},
+boutons: {
+  backgroundColor: PRIMARY_COLOR,
+},
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
