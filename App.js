@@ -1,12 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Header, Icon } from "react-native-elements";
+
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <View>
+    <Header
+    backgroundColor="#F1AEAE"
+    backgroundImageStyle={{}}
+    barStyle="default"
+    centerComponent={{
+      text: "RED CELL",
+      style: {
+        color: "#fff",
+        fontSize: 36,
+        fontWeight: "bold"
+      }
+    }}
+    centerContainerStyle={{}}
+    containerStyle={{ width: "100%" }}
+    leftComponent={{
+      icon: "menu",
+      color: "#fff",
+      size: 50
+    }}
+    leftContainerStyle={{}}
+    linearGradientProps={{}}
+    placement="center"
+    rightContainerStyle={{}}
+    statusBarProps={{}}
+  />
+  </View>
+    
   );
 }
 
@@ -14,7 +42,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center' 
   },
 });
