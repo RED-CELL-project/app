@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { Header, Icon } from "react-native-elements";
 
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function App() {
   return (
+    <SafeAreaView>
+
     <Header
     backgroundColor="#F1AEAE"
     backgroundImageStyle={{}}
@@ -31,6 +33,8 @@ export default function App() {
     rightContainerStyle={{}}
     statusBarProps={{}}
   />
+  </SafeAreaView>
+
   );
 }
 
