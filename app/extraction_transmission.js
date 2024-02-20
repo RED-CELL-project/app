@@ -50,11 +50,12 @@ export default function Extraction_transmission() {
                   // Extract the settings and bgDB values
                   const extractedSettings = JSON.parse(settingsMatch[1].replace(/'/g, '"'));
                   const extractedBgDB = JSON.parse(bgDBMatch[1].replace(/'/g, '"'));
-                  console.log(extractedSettings);
-                  console.log(extractedBgDB);
+                  
                   // Set the settings and bgDB states
                   setSettings(extractedSettings);
                   setBgDB(extractedBgDB);
+                  console.log(settings);
+                  console.log(bgDB);
                   // Set the document state to the selected document
                   setDocument(result.assets[0]);
                   
