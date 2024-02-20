@@ -1,13 +1,12 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 
 // Route de base
 export default function Page() {
   return (
-  <View>
+  <View style={styles.container}>
     <Text>Home page</Text>
     <Link push href="/pilulier">Login</Link>
-
   </View>
   );
 }
