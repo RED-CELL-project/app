@@ -6,7 +6,7 @@ export default function pilulier() {
     return(
         <View style={styles.container}>
             <Text>Test</Text>
-            <Link href="/index">retour</Link>
+            <Link href="/">retour</Link>
         </View>
 
     );

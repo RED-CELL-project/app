@@ -28,7 +28,7 @@ export default function Navbar() {
                             height: 60,
                             backgroundColor: color.primary
                         }}
-                        icon = {<Icon name = "book" size = {50} color = { color.secondary } />}
+                        icon = {<Icon name = "book" size = {40} color = { color.secondary } />}
                         onPress = {() => setVisible(true)}
                     />
                 }
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         display: 'none'
       },
     page: {
-        height: '100%',
+        height: '50%',
         width: '100%'
     }
   });  

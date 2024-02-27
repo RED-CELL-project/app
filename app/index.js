@@ -6,7 +6,7 @@ export default function Page() {
   return (
   <View style={styles.container}>
     <Text>Home page</Text>
-    <Link href="/pilulier">Login</Link>
+    <Link href="/pilulier">pilulier</Link>
   </View>
   );
 }

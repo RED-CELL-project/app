@@ -1,5 +1,5 @@
 import * as FileSystem from 'expo-file-system';
-import {React} from 'react';
+import {React, useState} from 'react';
 import { Button, View } from 'react-native';
 import { StorageAccessFramework } from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
@@ -33,7 +33,7 @@ export default function Extraction_transmission() {
               console.log(fileContent);
             } else {
               // Demander la permission d'accéder au répertoire sur Android
-              const result = await StorageAccessFramework.requestDirectoryPermissionsAsync({ copyToCacheDirectory: false });      // Vérifier le statut de la permission
+              const result = await StorageAccessFramework.requestDirectoryPermissionsAsync();      // Vérifier le statut de la permission
               console.log(result);
               if (result.granted) {
                 // Permission accordée, vous pouvez lire et écrire dans le répertoire
