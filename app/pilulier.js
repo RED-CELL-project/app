@@ -4,9 +4,9 @@ import {Link} from "expo-router";
 
 export default function pilulier() {
     return(
-        <View>
+        <View style={styles.container}>
             <Text>Test</Text>
-            <Link replace href="/index">retour</Link>
+            <Link href="/index">retour</Link>
         </View>
 
     );
