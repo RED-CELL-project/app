@@ -1,6 +1,4 @@
-import 'react-native-gesture-handler';
 import { Slot } from 'expo-router';
-import { Drawer } from 'expo-router/drawer';
 import Navbar from '../components/Navbar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome5';
