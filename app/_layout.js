@@ -2,6 +2,7 @@ import { Slot } from 'expo-router';
 import Navbar from '../components/Navbar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome5';
+import { Drawer } from 'expo-router/drawer';
 
 
 // Nous sert a garder la navbar et tout sur la page, seul changera ce qu'il y a dans <Slot />
