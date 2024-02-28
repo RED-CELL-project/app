@@ -3,6 +3,14 @@ import Navbar from '../components/Navbar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome5';
 import { Drawer } from 'expo-router/drawer';
+import { SafeAreaView } from 'react-native-safe-area-context';
+/*
+pour le sidebar d'antoine, remplacez tout le <Drawer> ... </Drawer> par:
+<SafeAreaView style = {{ flex: 1 }}>
+        <Navbar />
+        <Slot />
+      </SafeAreaView>  
+*/
 
 
 // Nous sert a garder la navbar et tout sur la page, seul changera ce qu'il y a dans <Slot />
