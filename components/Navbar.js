@@ -1,5 +1,5 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome5';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'expo-router/drawer';
 import color from '../styles/color';
 
@@ -13,7 +13,7 @@ export default function Navbar() {
                         drawerLabel: 'Accueil',
                         headerTitle: 'RED CELL',
                         drawerIcon: ({color, size}) => (
-                        <Ionicons name="home-outline" size={size} color={color}/>
+                        <FontAwesome name="home" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
                         headerTintColor: color.accent_content,
@@ -48,7 +48,7 @@ export default function Navbar() {
                         drawerLabel: 'Extraction',
                         headerTitle: 'Extraction',
                         drawerIcon: ({color, size}) => (
-                        <FontAwesome name="usb" size={size} color={color}/>
+                        <MaterialCommunityIcons name="usb-port" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
                         headerTintColor: color.accent_content,
@@ -65,7 +65,7 @@ export default function Navbar() {
                         drawerLabel: 'Historique',
                         headerTitle: 'Historique',
                         drawerIcon: ({color, size}) => (
-                        <Ionicons name="analytics-outline" size={size} color={color}/>
+                        <FontAwesome name="chart-line" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
                         headerTintColor: color.accent_content,
@@ -82,7 +82,7 @@ export default function Navbar() {
                         drawerLabel: 'Tutoriels',
                         headerTitle: 'Tutoriels',
                         drawerIcon: ({color, size}) => (
-                        <FontAwesome name="play-circle" size={size} color={color}/>
+                        <FontAwesome name="book" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
                         headerTintColor: color.accent_content,
@@ -99,7 +99,7 @@ export default function Navbar() {
                         drawerLabel: 'Connexion',
                         headerTitle: 'Connexion',
                         drawerIcon: ({color, size}) => (
-                        <Ionicons name="person-outline" size={size} color={color}/>
+                        <FontAwesome name="user-alt" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
                         headerTintColor: color.accent_content,
