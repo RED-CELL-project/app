@@ -3,6 +3,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import color from "../styles/color";
 import { useState } from "react";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { ScrollView } from "react-native-gesture-handler";
 const data = [
     { label: 'Item 1', value: '1' },
     { label: 'Item 2', value: '2' },
@@ -34,14 +35,25 @@ export default function pilulier() {
       console.log(currentDate);
     }
 
-    const showMode = (currentMode) => {
-      setShow(true);
-      setMode(currentMode);
-    }
+    const renderTimeCells = () => {
+      const cells = [];
+      for (let hour = 0; hour < 24; hour++) {
+        for (let minute = 0; minute < 60; minute += 15) {
+          const time = `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`;
+          cells.push(
+            <Pressable key={time} style={styles.timeCell} onPress={() => {console.log(time)}}>
+              <Text style={styles.timeText}>{time}</Text>
+            </Pressable>
+          );
+        }
+      }
+      return cells;
+    };
+
     return(
         <View style={styles.container}>
             <View style={styles.inputContainer}>
-            <Text style={styles.textStyle}>Médicament:</Text>
+            <Text style={styles.headersStyle}>Médicament:</Text>
             <Dropdown
                 style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
                 placeholderStyle={styles.placeholderStyle}
@@ -65,7 +77,7 @@ export default function pilulier() {
                 }}
                 />
 
-            <Text style={styles.textStyle}>Dose:</Text>
+            <Text style={styles.headersStyle}>Dose:</Text>
             <TextInput
             style={styles.doseInput}
             placeholder="choisir dose:(en mg)"
@@ -74,25 +86,14 @@ export default function pilulier() {
             onChangeText={val => {setDose(val)}}
             />
 
-            <Text style={styles.textStyle}>Heure de Prise:</Text>
-            <View>
-              <Pressable style={styles.heureInput} onPress={() => showMode('time')} >
-                <Text>choisir date:</Text>
-              </Pressable>
-            </View>
-            {
-              show && (
-                <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode={mode}
-                is24Hour={true}
-                display="default"
-                onChange={onChange}
-                />
-              )
-            }
-
+            <Text style={styles.headersStyle}>Heure(s) de Prise:</Text>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.heuresListe}>
+                {renderTimeCells()}
+            </ScrollView>
+            
+            <Pressable style={styles.ajouterContainer}>
+              <Text style={styles.ajouterText}>ajouter</Text>
+            </Pressable>
             </View>
         </View>
 
@@ -115,8 +116,8 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
 
-    textStyle: {
-        color: color.secondary,
+    headersStyle: {
+        color: color.primary_content,
         fontSize: 24,
         fontWeight: 'bold'
     },
@@ -160,6 +161,34 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         fontSize: 20,
         color: 'black'
+      },
+      heuresListe: {
+        marginVertical: 10
+      },
+      timeCell: {
+        padding: 5,
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.secondary,
+        marginVertical: 5,
+        marginHorizontal: 5,
+        borderRadius: 30,
+      },
+      timeText: {
+        fontSize: 16,
+        color: color.secondary_content
+      },
+      ajouterContainer: {
+        alignItems: 'center',
+        padding: 15,
+        backgroundColor: color.secondary,
+        borderRadius: 10
+      },
+      ajouterText: {
+        color: color.secondary_content,
+        fontSize: 20,
+        fontWeight: '500'
       }
   });
   
