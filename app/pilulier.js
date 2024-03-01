@@ -4,6 +4,7 @@ import color from "../styles/color";
 import { useState } from "react";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ScrollView } from "react-native-gesture-handler";
+
 const data = [
     { label: 'Item 1', value: '1' },
     { label: 'Item 2', value: '2' },
@@ -19,36 +20,51 @@ export default function pilulier() {
     // variable pour le choix du dose
     const [dose, setDose] = useState(0);
 
-    // variables pour le choix de l'heure
-    const [date, setDate] = useState(new Date());
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-    const [text, setText] = useState('');
-
-    const onChange = (e, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'ios');
-      setDate(currentDate);
-
-      let tempDate = new Date(currentDate);
-      let heure = tempDate.getHours() + 'h' + tempDate.getMinutes();
-      console.log(currentDate);
-    }
-
+    // variable pour le choix de l'heure
+    const [heures, setHeures] = useState([]);
+    
+    const addHeure = (t) => {
+      // Check if the time is already selected
+      const isHeureChoisi = heures.includes(t);
+      // If selected, remove it; otherwise, add it
+      setHeures((prevSelectedTimes) =>
+        isHeureChoisi
+          ? prevSelectedTimes.filter((selectedTime) => selectedTime !== t)
+          : [...prevSelectedTimes, t]
+      );
+    };
     const renderTimeCells = () => {
       const cells = [];
       for (let hour = 0; hour < 24; hour++) {
         for (let minute = 0; minute < 60; minute += 15) {
           const time = `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`;
           cells.push(
-            <Pressable key={time} style={styles.timeCell} onPress={() => {console.log(time)}}>
-              <Text style={styles.timeText}>{time}</Text>
+            <Pressable key={time} style={[
+              styles.timeCell,
+              heures.includes(time) && styles.selectedTimeCell, // Apply selected style if time is selected
+            ]} onPress={() => addHeure(time)}>
+              <Text style={[styles.timeText, heures.includes(time) && styles.selectedTimeText]}>{time}</Text>
             </Pressable>
           );
         }
       }
       return cells;
     };
+
+    const ajouterDonnees = () => {
+      let resultat = {};
+
+      if (!value || !dose || heures.length === 0) {
+        // Display error message in console
+        console.log("Please fill in all required fields.");
+        return; // Exit the function early if any required field is missing
+      }
+
+      resultat.value = value;
+      resultat.dose = dose;
+      resultat.heures = heures;
+      console.log(resultat);
+    }
 
     return(
         <View style={styles.container}>
@@ -91,7 +107,7 @@ export default function pilulier() {
                 {renderTimeCells()}
             </ScrollView>
             
-            <Pressable style={styles.ajouterContainer}>
+            <Pressable style={styles.ajouterContainer} onPress={ajouterDonnees}>
               <Text style={styles.ajouterText}>ajouter</Text>
             </Pressable>
             </View>
@@ -168,12 +184,22 @@ const styles = StyleSheet.create({
       timeCell: {
         padding: 5,
         paddingHorizontal: 10,
+        backgroundColor: color.secondary,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: color.secondary,
         marginVertical: 5,
         marginHorizontal: 5,
         borderRadius: 30,
+      },
+      timeText: {
+        backgroundColor: color.secondary_content,
+        
+      },
+      selectedTimeCell: {
+        backgroundColor: color.accent
+      },
+      selectedTimeText: {
+        color: color.accent_content
       },
       timeText: {
         fontSize: 16,
