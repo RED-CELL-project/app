@@ -2,20 +2,27 @@ import FontAwesome from '@expo/vector-icons/FontAwesome5';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'expo-router/drawer';
 import color from '../styles/color';
+import { Dimensions } from 'react-native';
 
 export default function Navbar() {
+
+    const tailleHeader = Math.floor(Dimensions.get('screen').height / 7);
+
     return (
         <>
             <Drawer screenOptions = {{
+
                 swipeEdgeWidth: 150,
+
                 headerTintColor: color.accent_content,
-                headerStyle: { backgroundColor: color.accent, height: 100 },
+                headerTitleStyle: { fontSize: 30 },
+                headerStyle: { backgroundColor: color.accent, height: tailleHeader },
+
                 drawerStyle: { backgroundColor: color.secondary },
                 drawerActiveTintColor: color.primary_content,
                 drawerInactiveTintColor: color.secondary_content,
                 drawerActiveBackgroundColor: color.primary,
-                headerTitleStyle: { fontSize: 30 }
-                }}>
+            }}>
                 <Drawer.Screen
                     name='index'
                     options={{
