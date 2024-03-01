@@ -16,13 +16,13 @@ export default function Navbar() {
                         <Ionicons name="home-outline" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontWeight: 'bold', fontSize: 30 },
                         headerTitleAlign: 'center',
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
                 <Drawer.Screen
@@ -34,12 +34,12 @@ export default function Navbar() {
                         <FontAwesome name="pills" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
                 <Drawer.Screen
@@ -51,12 +51,12 @@ export default function Navbar() {
                         <FontAwesome name="usb" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
                 <Drawer.Screen
@@ -68,12 +68,12 @@ export default function Navbar() {
                         <Ionicons name="analytics-outline" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
                 <Drawer.Screen
@@ -85,12 +85,12 @@ export default function Navbar() {
                         <FontAwesome name="play-circle" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
                 <Drawer.Screen
@@ -102,12 +102,12 @@ export default function Navbar() {
                         <Ionicons name="person-outline" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
                 <Drawer.Screen
@@ -119,12 +119,12 @@ export default function Navbar() {
                         <FontAwesome name="balance-scale" size={size} color={color}/>
                         ),
                         headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.secondary,
+                        headerTintColor: color.accent_content,
                         headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.primary },
-                        drawerActiveTintColor: color.secondary,
-                        drawerInactiveTintColor: color.secondary,
-                        drawerActiveBackgroundColor: color.primaryLight
+                        drawerStyle: { backgroundColor: color.secondary },
+                        drawerActiveTintColor: color.primary_content,
+                        drawerInactiveTintColor: color.secondary_content,
+                        drawerActiveBackgroundColor: color.primary
                     }}
                 />
             </Drawer>
