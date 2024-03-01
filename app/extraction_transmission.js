@@ -1,16 +1,17 @@
 import * as FileSystem from 'expo-file-system';
 import {React, useState} from 'react';
-import { Button, View } from 'react-native';
+import { Button, View, StyleSheet } from 'react-native';
 import { StorageAccessFramework } from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
+import color from '../styles/color';
 
 
 export default function Extraction_transmission() {
     const [document, setDocument] = useState(null);
     const [settings, setSettings] = useState(null);
     const [bgDB, setBgDB] = useState(null);
-
+    // supprime le path enregistré, que pour la phase dévéloppement
     const deleteFilePath = async () => {
         try {
           await SecureStore.deleteItemAsync('folderPath');
@@ -19,7 +20,9 @@ export default function Extraction_transmission() {
           console.error('Error deleting file path from SecureStore:', error);
         }
       };
-      
+      // demande la permission et accede au path du ficher qui nous interesse: METERDAT.JS
+      // extrait aussi les données dans le fichier
+      // à tester en terme de rigidité
       async function requestDirectoryPermission() {
         try {
           // Vérifier le système d'exploitation
@@ -71,7 +74,6 @@ export default function Extraction_transmission() {
             // Partie IOS
           
             }
-            
         } catch (error) {
           // Une erreur s'est produite, afficher le message d'erreur
           console.error(error.message);
@@ -79,7 +81,10 @@ export default function Extraction_transmission() {
       }
       
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.container}>
+      <View style={styles.afficheContainer}>
+        
+      </View>
       <Button
         title="Send data"
         onPress={requestDirectoryPermission}
@@ -92,3 +97,16 @@ export default function Extraction_transmission() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    padding: 15
+  },
+  afficheContainer: {
+    backgroundColor: color.secondary,
+    padding: 10
+  }
+});

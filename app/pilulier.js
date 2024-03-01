@@ -23,6 +23,7 @@ export default function pilulier() {
     // variable pour le choix de l'heure
     const [heures, setHeures] = useState([]);
     
+    // ajoute les heures choisies à la liste heures, enlève si c'est déjà choisi
     const addHeure = (t) => {
       // Check if the time is already selected
       const isHeureChoisi = heures.includes(t);
@@ -33,6 +34,7 @@ export default function pilulier() {
           : [...prevSelectedTimes, t]
       );
     };
+    // creation de tout les cases heures
     const renderTimeCells = () => {
       const cells = [];
       for (let hour = 0; hour < 24; hour++) {
@@ -41,7 +43,7 @@ export default function pilulier() {
           cells.push(
             <Pressable key={time} style={[
               styles.timeCell,
-              heures.includes(time) && styles.selectedTimeCell, // Apply selected style if time is selected
+              heures.includes(time) && styles.selectedTimeCell,
             ]} onPress={() => addHeure(time)}>
               <Text style={[styles.timeText, heures.includes(time) && styles.selectedTimeText]}>{time}</Text>
             </Pressable>
@@ -51,6 +53,7 @@ export default function pilulier() {
       return cells;
     };
 
+    // prend les données choisies et les met dans un objet resultat
     const ajouterDonnees = () => {
       let resultat = {};
 
@@ -111,6 +114,7 @@ export default function pilulier() {
               <Text style={styles.ajouterText}>ajouter</Text>
             </Pressable>
             </View>
+            <Text style={{fontSize:24, margin: 20}}>Potentiel texte explicant les differents médicaments?</Text>
         </View>
 
     );
