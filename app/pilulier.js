@@ -1,8 +1,8 @@
-import { StyleSheet, View, Text, TextInput} from "react-native";
+import { StyleSheet, View, Text, TextInput, Platform, Pressable} from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import color from "../styles/color";
 import { useState } from "react";
-
+import DateTimePicker from '@react-native-community/datetimepicker';
 const data = [
     { label: 'Item 1', value: '1' },
     { label: 'Item 2', value: '2' },
@@ -18,44 +18,81 @@ export default function pilulier() {
     // variable pour le choix du dose
     const [dose, setDose] = useState(0);
 
+    // variables pour le choix de l'heure
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+    const [text, setText] = useState('');
 
+    const onChange = (e, selectedDate) => {
+      const currentDate = selectedDate || date;
+      setShow(Platform.OS === 'ios');
+      setDate(currentDate);
 
+      let tempDate = new Date(currentDate);
+      let heure = tempDate.getHours() + 'h' + tempDate.getMinutes();
+      console.log(currentDate);
+    }
+
+    const showMode = (currentMode) => {
+      setShow(true);
+      setMode(currentMode);
+    }
     return(
         <View style={styles.container}>
             <View style={styles.inputContainer}>
             <Text style={styles.textStyle}>Médicament:</Text>
             <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={data}
-          
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Select item' : '...'}
-          searchPlaceholder="Search..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValue(item.value);
-            console.log(item.label);
-            setIsFocus(false);
-          }}
-        />
+                style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={data}
+                
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocus ? 'Select item' : '...'}
+                searchPlaceholder="Search..."
+                value={value}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={item => {
+                    setValue(item.value);
+                    console.log(item.label);
+                    setIsFocus(false);
+                }}
+                />
 
-        <Text style={styles.textStyle}>Dose:</Text>
-        <TextInput
-        style={styles.doseInput}
-        placeholder="choisir dose:(en mg)"
-        keyboardType="number-pad"
-        onChangeText={val => {setDose(val)}}
-        />
+            <Text style={styles.textStyle}>Dose:</Text>
+            <TextInput
+            style={styles.doseInput}
+            placeholder="choisir dose:(en mg)"
+            placeholderTextColor={'black'}
+            keyboardType="number-pad"
+            onChangeText={val => {setDose(val)}}
+            />
 
-        <Text style={styles.textStyle}>Heure de Prise:</Text>
+            <Text style={styles.textStyle}>Heure de Prise:</Text>
+            <View>
+              <Pressable style={styles.heureInput} onPress={() => showMode('time')} >
+                <Text>choisir date:</Text>
+              </Pressable>
+            </View>
+            {
+              show && (
+                <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+                />
+              )
+            }
+
             </View>
         </View>
 
@@ -110,7 +147,18 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: 8,
         paddingHorizontal: 8,
-        fontSize: 16,
+        fontSize: 16
+      },
+      heureInput: {
+        marginVertical: 10,
+        height: 50,
+        backgroundColor: 'white',
+        borderColor: 'white',
+        borderWidth: 0.5,
+        borderRadius: 8,
+        paddingVertical: 15,
+        paddingHorizontal: 5,
+        fontSize: 20,
         color: 'black'
       }
   });
