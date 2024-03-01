@@ -6,7 +6,16 @@ import color from '../styles/color';
 export default function Navbar() {
     return (
         <>
-            <Drawer>
+            <Drawer screenOptions = {{
+                swipeEdgeWidth: 150,
+                headerTintColor: color.accent_content,
+                headerStyle: { backgroundColor: color.accent, height: 100 },
+                drawerStyle: { backgroundColor: color.secondary },
+                drawerActiveTintColor: color.primary_content,
+                drawerInactiveTintColor: color.secondary_content,
+                drawerActiveBackgroundColor: color.primary,
+                headerTitleStyle: { fontSize: 30 }
+                }}>
                 <Drawer.Screen
                     name='index'
                     options={{
@@ -15,14 +24,8 @@ export default function Navbar() {
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="home" size={size} color={color}/>
                         ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontWeight: 'bold', fontSize: 30 },
-                        headerTitleAlign: 'center',
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        headerTitleStyle: { fontWeight: 'bold', fontSize: 35 },
+                        headerTitleAlign: 'center'
                     }}
                 />
                 <Drawer.Screen
@@ -32,14 +35,7 @@ export default function Navbar() {
                         headerTitle: 'Pilulier',
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="pills" size={size} color={color}/>
-                        ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        )
                     }}
                 />
                 <Drawer.Screen
@@ -49,14 +45,7 @@ export default function Navbar() {
                         headerTitle: 'Extraction',
                         drawerIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="usb-port" size={size} color={color}/>
-                        ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        )
                     }}
                 />
                 <Drawer.Screen
@@ -66,14 +55,7 @@ export default function Navbar() {
                         headerTitle: 'Historique',
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="chart-line" size={size} color={color}/>
-                        ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        )
                     }}
                 />
                 <Drawer.Screen
@@ -83,14 +65,7 @@ export default function Navbar() {
                         headerTitle: 'Tutoriels',
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="book" size={size} color={color}/>
-                        ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        )
                     }}
                 />
                 <Drawer.Screen
@@ -100,15 +75,9 @@ export default function Navbar() {
                         headerTitle: 'Connexion',
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="user-alt" size={size} color={color}/>
-                        ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        )
                     }}
+
                 />
                 <Drawer.Screen
                     name='legal'
@@ -117,14 +86,7 @@ export default function Navbar() {
                         headerTitle: 'Légal',
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="balance-scale" size={size} color={color}/>
-                        ),
-                        headerStyle: { backgroundColor: color.accent },
-                        headerTintColor: color.accent_content,
-                        headerTitleStyle: { fontSize: 30 },
-                        drawerStyle: { backgroundColor: color.secondary },
-                        drawerActiveTintColor: color.primary_content,
-                        drawerInactiveTintColor: color.secondary_content,
-                        drawerActiveBackgroundColor: color.primary
+                        )
                     }}
                 />
             </Drawer>
