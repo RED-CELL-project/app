@@ -1,6 +1,6 @@
 import * as FileSystem from 'expo-file-system';
 import {React, useState} from 'react';
-import { Button, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet, Pressable } from 'react-native';
 import { StorageAccessFramework } from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
@@ -80,33 +80,51 @@ export default function Extraction_transmission() {
         }
       }
       
-  return (
-    <View style={styles.container}>
-      <View style={styles.afficheContainer}>
-        
-      </View>
-      <Button
-        title="Send data"
-        onPress={requestDirectoryPermission}
-      />
+      return (
+        <View style={styles.container}>
+          <View style={styles.afficheContainer}>
+            
+          </View>
+          <Pressable
+            style={styles.button}
+            activeOpacity = {0.5}
+            onPress={requestDirectoryPermission}>
+            <Text style ={styles.text}>{'Envoyez vos données'}</Text>
+            </Pressable>
 
-      <Button
+            {/*<Button
         title='delete saved path'
         onPress={deleteFilePath}
-      />
-    </View>
-  );
-}
+      />*/}
+    
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    padding: 15
-  },
-  afficheContainer: {
-    backgroundColor: color.secondary,
-    padding: 10
-  }
-});
+        </View>
+      );
+    }
+    
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: color.secondary,
+        alignItems: 'center',
+        padding: 15
+      },
+      button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 20,
+        paddingHorizontal: 50,
+        borderRadius: 10,
+        elevation: 10,
+        backgroundColor: '#d33962',
+        marginVertical : 200,
+      },
+      text: {
+        fontSize: 20,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
+      },
+      
+    });
