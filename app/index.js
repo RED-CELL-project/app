@@ -1,8 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Link } from 'expo-router';
+import Heading from '../components/Heading';
+import color from '../styles/color';
+import { Pill } from 'lucide-react-native';
 
 
-const fakeStorage = {
+/*const fakeStorage = {
   "drug-list": [
       {
           "name": "Prévisan",
@@ -24,19 +27,18 @@ const fakeStorage = {
           "frequency": {
               "per-week":null,
               "every-x-day": 3,
-              "start-day": 143576578680979885
+              "start-day": 143576578680
           },
           "hours": [6435543, 54644564]
       }
   ]
-}
+}*/
 
 // Route de base
 export default function Page() {
   return (
   <View style={styles.container}>
-    <Text>Home page</Text>
-    <Link href="/pilulier">pilulier</Link>
+    <Heading icon={Pill} text={"Pilulier"}/>
   </View>
   );
 }
@@ -44,8 +46,7 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: color.background,
+    padding: 10
   },
 });
