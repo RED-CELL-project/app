@@ -5,11 +5,19 @@ import { useState } from "react";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ScrollView } from "react-native-gesture-handler";
 
-const data = [
-    { label: 'Item 1', value: '1' },
-    { label: 'Item 2', value: '2' },
-    { label: 'Item 3', value: '3' }
+const units = [
+    { label: 'mg'},
+    { label: 'pilule(s)'},
+    { label: 'ml'},
+    { label: 'goute(s)'}
   ];
+
+const freqs = [
+    { label: 'intervalles réguliers'},
+    { label: 'jours de la semaine'}
+];
+
+
 
   /* code pour un dropdown
   <Dropdown
@@ -48,7 +56,14 @@ export default function pilulier() {
     const [isUnitFocus, setIsUnitFocus] = useState(false);
 
     // variables pour le choix de la frequence
-    
+    const [frequence, setFrequence] = useState({
+      "per-week":null,
+      "every-x-day": null,
+      "start-day": null
+    });
+    const [isFreqFocus, setIsFreqFocus] = useState(false);
+    const [chosenFreq, setChosenFreq] = useState("");
+
 
     // variable pour le choix de l'heure
     const [heures, setHeures] = useState([]);
@@ -134,27 +149,46 @@ export default function pilulier() {
                 selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
                 iconStyle={styles.iconStyle}
-                data={data}
+                data={units}
                 
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={!isUnitFocus ? 'mg' : '...'}
-                searchPlaceholder="Search..."
-                value={unit}
+                                
                 onFocus={() => setIsUnitFocus(true)}
                 onBlur={() => setIsUnitFocus(false)}
                 onChange={item => {
-                    setUnit(item.value);
+                    setUnit(item.label);
                     console.log(item.label);
                     setIsUnitFocus(false);
                 }}
                 />
-
-
             </View>
 
             <Text style={styles.headersStyle}>Fréquence:</Text>
+            <Dropdown
+                style={styles.freqDropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={freqs}
+                
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                
+                
+                
+                onFocus={() => setIsFreqFocus(true)}
+                onBlur={() => setIsFreqFocus(false)}
+                onChange={item => {
+                    setChosenFreq(item.label);
+                    console.log(item.label);
+                    setIsFreqFocus(false);
+                }}
+                />
+
+
 
             <Text style={styles.headersStyle}>Heure(s) de Prise:</Text>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.heuresListe}>
@@ -196,6 +230,7 @@ const styles = StyleSheet.create({
     
       placeholderStyle: {
         fontSize: 16,
+        color: 'gray'
       },
       selectedTextStyle: {
         fontSize: 16,
@@ -241,17 +276,14 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 8,
       },
-      heureInput: {
+      freqDropdown: {
         marginVertical: 10,
         height: 50,
         backgroundColor: 'white',
         borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: 8,
-        paddingVertical: 15,
-        paddingHorizontal: 5,
-        fontSize: 20,
-        color: 'black'
+        paddingHorizontal: 8,
       },
       heuresListe: {
         marginVertical: 10
@@ -266,10 +298,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         borderRadius: 30,
       },
-      timeText: {
-        backgroundColor: color.secondary_content,
-        
-      },
+      
       selectedTimeCell: {
         backgroundColor: color.accent
       },
