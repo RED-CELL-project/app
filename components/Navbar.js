@@ -22,7 +22,7 @@ export default function Navbar() {
                     name='index'
                     options={{
                         drawerLabel: 'Accueil',
-                        headerTitle: 'myINR',
+                        headerTitle: 'RED CELL',
                         drawerIcon: ({color, size}) => (
                         <FontAwesome name="home" size={size} color={color}/>
                         ),
