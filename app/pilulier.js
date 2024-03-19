@@ -13,6 +13,7 @@ const units = [
   ];
 
 const freqs = [
+    { label: 'tous les jours'},
     { label: 'intervalles réguliers'},
     { label: 'jours de la semaine'}
 ];
@@ -58,7 +59,7 @@ export default function pilulier() {
     // variables pour le choix de la frequence
     const [frequence, setFrequence] = useState({
       "per-week":null,
-      "every-x-day": null,
+      "every-x-day": 1,
       "start-day": null
     });
     const [isFreqFocus, setIsFreqFocus] = useState(false);
@@ -68,6 +69,15 @@ export default function pilulier() {
     // variable pour le choix de l'heure
     const [heures, setHeures] = useState([]);
     
+    const updatePerWeek = (i) => {
+      setFrequence(prevFrequency => {
+        return {
+          ...prevFrequency,
+          "per-week": prevFrequency["per-week"].map((value, index) => index === i ? !value : value)
+        };
+      });
+    };
+
     // ajoute les heures choisies à la liste heures, enlève si c'est déjà choisi
     const addHeure = (t) => {
       // Check if the time is already selected
@@ -112,7 +122,7 @@ export default function pilulier() {
     const ajouterDonnees = () => {
       let resultat = {};
 
-      if (!medicament || !dose || heures.length === 0) {
+      if (medicament === null || (!dose || heures.length === 0)) {
         // Display error message in console
         console.log("Please fill in all required fields.");
         return; // Exit the function early if any required field is missing
@@ -121,11 +131,16 @@ export default function pilulier() {
       resultat.medicament = medicament;
       resultat.dose = dose;
       resultat.heures = heures;
+      resultat.unit = unit;
+      resultat.frequence = frequence;
       console.log(resultat);
     }
 
     return(
-        <View style={styles.container}>
+    
+    <ScrollView 
+        showsVerticalScrollIndicator={false}
+        style={styles.container}>
             <View style={styles.inputContainer}>
             <Text style={styles.headersStyle}>Médicament:</Text>
             <TextInput
@@ -184,9 +199,80 @@ export default function pilulier() {
                 onChange={item => {
                     setChosenFreq(item.label);
                     console.log(item.label);
+                    if (item.label === "intervalles réguliers") {
+                      setFrequence({...frequence, ...{"per-week": null}});
+                    } else if (item.label === "jours de la semaine") {
+                      setFrequence({...frequence, ...{"per-week": [false, false, false, false, false, false, false], "every-x-day": null}});
+                    } else {
+                      setFrequence({...frequence, ...{"every-x-day": 1, "per-week": null}});
+                    }
+                    console.log(frequence);
                     setIsFreqFocus(false);
                 }}
                 />
+
+                {
+                  chosenFreq === "intervalles réguliers" && 
+                  (<View style={styles.freqIntervalHiddenContainer}>
+                    <Text style={styles.freqIntervalHiddenText}>Tous les </Text>
+                    <TextInput
+                    style={styles.Input}
+                    placeholder=""
+                    keyboardType="number-pad"
+                    maxLength={2}
+                    onChangeText={val => {setFrequence({...frequence, ...{"every-x-days": val}})}}
+                    />
+                    <Text style={styles.freqIntervalHiddenText}>jours</Text>
+                  </View>)
+                }
+                
+                {chosenFreq === 'jours de la semaine' && 
+                (
+                  <View style={styles.freqJDSHiddenContainer}>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][0] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(0)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][0] && styles.freqJDSHiddenSelectedText]}>L</Text>
+                    </Pressable>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][1] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(1)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][1] && styles.freqJDSHiddenSelectedText]}>M</Text>
+                    </Pressable>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][2] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(2)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][2] && styles.freqJDSHiddenSelectedText]}>M</Text>
+                    </Pressable>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][3] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(3)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][3] && styles.freqJDSHiddenSelectedText]}>J</Text>
+                    </Pressable>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][4] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(4)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][4] && styles.freqJDSHiddenSelectedText]}>V</Text>
+                    </Pressable>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][5] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(5)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][5] && styles.freqJDSHiddenSelectedText]}>S</Text>
+                    </Pressable>
+                    <Pressable 
+                      style={[styles.freqHiddenCircle, frequence["per-week"][6] && styles.freqHiddenSelsectedCircle]}
+                      onPress={() => updatePerWeek(6)}
+                      >
+                    <Text style={[styles.freqJDSHiddenText, frequence["per-week"][6] && styles.freqJDSHiddenSelectedText]}>D</Text>
+                    </Pressable>
+                  </View>
+      )}
 
 
 
@@ -200,9 +286,13 @@ export default function pilulier() {
             <Pressable style={styles.ajouterContainer} onPress={ajouterDonnees}>
               <Text style={styles.ajouterText}>ajouter</Text>
             </Pressable>
+            
             </View>
-        </View>
+            <View style={{margin: 10}}>
 
+            </View>
+        </ScrollView>
+        
     );
 
 }
@@ -211,14 +301,13 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      padding: 15
+      padding: 10,
     },
 
     inputContainer: {
         backgroundColor: color.primary,
         width: '100%',
-        padding: 15,
+        padding: 10,
         borderRadius: 10
     },
 
@@ -267,7 +356,6 @@ const styles = StyleSheet.create({
       },
       unitDropdown: {
         width: '35%',
-        
         marginVertical: 10,
         height: 50,
         backgroundColor: 'white',
@@ -284,6 +372,53 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: 8,
         paddingHorizontal: 8,
+      },
+      freqIntervalHiddenContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: color.secondary,
+        marginBottom: 10,
+        borderRadius: 10,
+        paddingHorizontal: 5
+      },
+      freqIntervalHiddenText: {
+        marginHorizontal: 10,
+        color: color.secondary_content,
+        fontSize: 16
+      },
+      freqJDSHiddenContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        marginBottom: 10,
+        borderRadius: 10,
+        paddingVertical: 5
+      },
+      freqHiddenCircle: {
+        flex: 1/8,
+        padding: 5,
+        backgroundColor: color.secondary,
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      freqJDSHiddenText: {
+        margin: 5,
+        color: color.secondary_content,
+        fontSize: 16
+      },
+      freqHiddenSelsectedCircle: {
+        flex: 1/8,
+        padding: 5,
+        backgroundColor: color.accent,
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      freqJDSHiddenSelectedText: {
+        margin: 5,
+        color: color.accent_content,
+        fontSize: 16
       },
       heuresListe: {
         marginVertical: 10
@@ -313,7 +448,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 15,
         backgroundColor: color.secondary,
-        borderRadius: 10
+        borderRadius: 10,
+        marginTop: 10
       },
       ajouterText: {
         color: color.secondary_content,
