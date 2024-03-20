@@ -133,6 +133,7 @@ export default function pilulier() {
       resultat.heures = heures;
       resultat.unit = unit;
       resultat.frequence = frequence;
+    
       console.log(resultat);
     }
 
@@ -200,7 +201,7 @@ export default function pilulier() {
                     setChosenFreq(item.label);
                     console.log(item.label);
                     if (item.label === "intervalles réguliers") {
-                      setFrequence({...frequence, ...{"per-week": null}});
+                      setFrequence({...frequence, ...{"per-week": null, "start-day": Date.now()}});
                     } else if (item.label === "jours de la semaine") {
                       setFrequence({...frequence, ...{"per-week": [false, false, false, false, false, false, false], "every-x-day": null}});
                     } else {
@@ -220,7 +221,7 @@ export default function pilulier() {
                     placeholder=""
                     keyboardType="number-pad"
                     maxLength={2}
-                    onChangeText={val => {setFrequence({...frequence, ...{"every-x-days": val}})}}
+                    onChangeText={val => {setFrequence({...frequence, ...{"every-x-day": val}})}}
                     />
                     <Text style={styles.freqIntervalHiddenText}>jours</Text>
                   </View>)
