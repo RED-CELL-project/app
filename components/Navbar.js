@@ -2,10 +2,14 @@ import FontAwesome from '@expo/vector-icons/FontAwesome5';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'expo-router/drawer';
 import color from '../styles/color';
-import { Dimensions } from 'react-native';
+import { Dimensions, Pressable } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { DrawerActions } from '@react-navigation/native';
+import { useNavigation } from 'expo-router';
 
 export default function Navbar() {
     const tailleHeader = Math.floor(Dimensions.get('screen').height/7);
+    const navigation = useNavigation();
     return (
         <>
             <Drawer screenOptions = {{
@@ -17,7 +21,21 @@ export default function Navbar() {
                 drawerActiveTintColor: color.primary_content,
                 drawerInactiveTintColor: color.secondary_content,
                 drawerActiveBackgroundColor: color.primary,
+                headerLeft: () => <Pressable
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer)}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                  paddingLeft: 15, // Adjust padding as needed
+                })}
+              >
+                <Ionicons name="menu" size={40} color="white" />
+              </Pressable>
+                
+
+                
             }}>
+                
+
                 <Drawer.Screen
                     name='index'
                     options={{
