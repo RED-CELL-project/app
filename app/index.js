@@ -1,8 +1,9 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import Heading from '../components/Heading';
+import DrugRectangle from '../components/DrugRectangle';
 import color from '../styles/color';
-import { Pill } from 'lucide-react-native';
+import { Pill, SquareActivity } from 'lucide-react-native';
 
 
 /*const fakeStorage = {
@@ -39,6 +40,18 @@ export default function Page() {
   return (
   <View style={styles.container}>
     <Heading icon={Pill} text={"Pilulier"}/>
+    <ScrollView 
+      horizontal={true} 
+      showsHorizontalScrollIndicator={false} 
+      style={styles.drugsContainer} 
+      contentContainerStyle={styles.drugsContentContainer}
+    >
+      <DrugRectangle/>
+      <DrugRectangle/>
+      <DrugRectangle/>
+    </ScrollView>
+    <Heading icon={SquareActivity} text={"Analyse"}/>
+
   </View>
   );
 }
@@ -47,6 +60,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.background,
-    padding: 10
+    paddingHorizontal: 20,
+    paddingVertical: 5
   },
+  drugsContainer: {
+    overflow: 'visible',
+    flexGrow: 0
+  },
+  drugsContentContainer: {
+    gap: 10
+  }
 });

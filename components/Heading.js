@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import color from '../styles/color';
 
 const iconStrokeWidth = 3;
-const iconSize = 30;
+const iconSize = 26;
 
 export default function Heading(props) {
     
@@ -18,11 +18,13 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
         gap: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 10,
+        marginTop: 25
 
     },
     text:{
-        fontSize: 32,
+        fontSize: 28,
         fontWeight: "bold",
         color: color.neutral
     }
