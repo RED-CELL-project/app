@@ -3,7 +3,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'expo-router/drawer';
 import color from '../styles/color';
 import { Dimensions, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Menu } from 'lucide-react-native';
 import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from 'expo-router';
 
@@ -28,7 +28,7 @@ export default function Navbar() {
                   paddingLeft: 15, // Adjust padding as needed
                 })}
               >
-                <Ionicons name="menu" size={40} color="white" />
+                <Menu size={40} color={color.accent_content} strokeWidth={2.3} />
               </Pressable>
                 
 
